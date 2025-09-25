@@ -1,4 +1,4 @@
-# Platformer game
+# HeadRoom
 
 Explore the room of 🕴️ and travel through all their hobbies and fixations, uncovering the mysteries of their (your) identity and building their (your) personality
 
