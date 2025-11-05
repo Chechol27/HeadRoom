@@ -49,7 +49,7 @@ The Room's progression then, is determined by the amount of sections the player 
 
 ---
 
-## Microgames
+## Microgames [🔗](./Microgame.md)
 
 The microgames, other than being a play/gamefeel feature, they also help by serving 2 Specific purposes:
 
@@ -58,7 +58,7 @@ The microgames, other than being a play/gamefeel feature, they also help by serv
 
 
 
-## Entry Minigame
+## Entry Minigames [🔗](./Level.md)
 
 Some Interactable objects are more than just minigames **microgames**, playing it will serve two purposes:
 
