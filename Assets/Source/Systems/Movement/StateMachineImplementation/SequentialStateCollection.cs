@@ -31,7 +31,12 @@ public class SequentialStateCollection :
     {
         foreach (ILogicalState logicalState in subStates)
         {
-            ((ILogicalState)logicalState).Execute(globalData, stateMachine);
+            logicalState.Execute(globalData, stateMachine);
+        }
+
+        if (TransitionEvaluator.Evaluate(globalData, out ILogicalStateTransition hit))
+        {
+            ((IStateMachine)stateMachine).SwitchState(hit.To);
         }
     }
     

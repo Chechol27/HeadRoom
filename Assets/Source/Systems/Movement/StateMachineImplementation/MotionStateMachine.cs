@@ -46,6 +46,12 @@ public class MotionStateMachine : MonoBehaviour, IStateMachine, ICharacterCompon
         if(currentState is IInitializeState initializeState) initializeState.Initialize(Registry, this);
     }
 
+    public void SwitchState(ILogicalState targetState)
+    {
+        if (!states.Contains(targetState)) return;
+        SwitchState(states.IndexOf(targetState));
+    }
+
     public void Evaluate()
     {
         currentState?.Execute(Registry, this);

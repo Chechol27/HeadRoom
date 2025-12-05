@@ -11,4 +11,6 @@ public interface IStateMachine
     /// Intended to do pre- and post-logic for a state switch
     /// </summary>
     public void SwitchState(int nextStateId);
+    
+    public void SwitchState(ILogicalState targetState);
 }
