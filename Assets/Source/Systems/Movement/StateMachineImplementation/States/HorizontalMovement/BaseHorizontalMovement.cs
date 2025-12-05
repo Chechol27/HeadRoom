@@ -3,10 +3,11 @@ using UnityEngine.InputSystem;
 
 public class BaseHorizontalMovement :
     MonoBehaviour,
-    ILogicalState<HorizontalMovementData>, 
+    ILogicalState, 
     IInitializeState, 
     IFinalizeState
 {
+    
     [field:SerializeField]
     [field:Expandable]
     [field:CreateScriptableObject]
@@ -48,4 +49,5 @@ public class BaseHorizontalMovement :
         PlayerInput playerInput = stateMachine.GetComponent<PlayerInput>();
         playerInput.onActionTriggered -= OnMove;
     }
+
 }

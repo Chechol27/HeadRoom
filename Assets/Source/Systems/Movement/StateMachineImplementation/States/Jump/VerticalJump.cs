@@ -11,7 +11,7 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class VerticalJump : 
     MonoBehaviour,
-    ILogicalState<VerticalJumpData>, 
+    ILogicalState, 
     IInitializeState, 
     IFinalizeState
 {

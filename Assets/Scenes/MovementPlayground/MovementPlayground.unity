@@ -2660,7 +2660,7 @@ Transform:
   m_GameObject: {fileID: 856561242}
   serializedVersion: 2
   m_LocalRotation: {x: 0.031768344, y: 0.0000000037234082, z: -1.1834625e-10, w: 0.99949527}
-  m_LocalPosition: {x: 0.52400017, y: 2.5327713, z: -6.447127}
+  m_LocalPosition: {x: 8.912, y: 2.5327713, z: -6.447127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6127,7 +6127,7 @@ GameObject:
   - component: {fileID: 2009060851}
   - component: {fileID: 2009060852}
   m_Layer: 0
-  m_Name: Hero
+  m_Name: Hero (Old)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6400,7 +6400,7 @@ Transform:
   m_GameObject: {fileID: 2037626101}
   serializedVersion: 2
   m_LocalRotation: {x: 0.031768344, y: 0.0000000037234082, z: -1.1834625e-10, w: 0.99949527}
-  m_LocalPosition: {x: -8.388, y: 2.5327713, z: -6.447127}
+  m_LocalPosition: {x: 0, y: 2.5327713, z: -6.447127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

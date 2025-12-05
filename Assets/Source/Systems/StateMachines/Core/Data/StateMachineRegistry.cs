@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+//TODO: more efficient parameter fetch through hash tables
 public class StateMachineRegistry : ScriptableObject
 {
     private readonly Dictionary<Type, Dictionary<string, IStateMachineProperty>> collection = new Dictionary<Type, Dictionary<string, IStateMachineProperty>>();
@@ -29,6 +30,21 @@ public class StateMachineRegistry : ScriptableObject
         catch (Exception e)
         {
             return null;
+        }
+    }
+
+    public bool TryGetValue<TValue>(string paramName, out StateMachineProperty<TValue> value)
+    {
+        Type t = typeof(TValue);
+        try
+        {
+            value = (StateMachineProperty<TValue>)collection[t][paramName];
+            return true;
+        }
+        catch (Exception e)
+        {
+            value = null;
+            return false;
         }
     }
 }

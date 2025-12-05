@@ -1,22 +1,28 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class SequentialStateCollection : ILogicalState, IInitializeState, IFinalizeState
+public class SequentialStateCollection : 
+    MonoBehaviour, 
+    ILogicalState, 
+    IInitializeState, 
+    IFinalizeState,
+    ITransitionalState
 {
-    private List<ILogicalState> subStates = new List<ILogicalState>();
-
-    public void AddState(ILogicalState state)
-    {
-        subStates.Add(state);
-    }
+    [field:SerializeField] public TransitionEvaluator TransitionEvaluator { get; set; }
+    private List<ILogicalState> subStates = new(); 
     
     public void Initialize(StateMachineRegistry globalData, Component stateMachine)
     {
-        foreach (ILogicalState logicalState in subStates)
+        subStates.Clear();
+        foreach (Transform t in transform)
         {
-            if (logicalState is IInitializeState initState)
+            if (t.TryGetComponent(out ILogicalState state))
             {
-                initState.Initialize(globalData, stateMachine);
+                subStates.Add(state);
+                if (state is IInitializeState initState)
+                {
+                    initState.Initialize(globalData, stateMachine);
+                }
             }
         }
     }
@@ -25,7 +31,7 @@ public class SequentialStateCollection : ILogicalState, IInitializeState, IFinal
     {
         foreach (ILogicalState logicalState in subStates)
         {
-            logicalState.Execute(globalData, stateMachine);
+            ((ILogicalState)logicalState).Execute(globalData, stateMachine);
         }
     }
     
@@ -39,4 +45,5 @@ public class SequentialStateCollection : ILogicalState, IInitializeState, IFinal
             }
         }
     }
+
 }
