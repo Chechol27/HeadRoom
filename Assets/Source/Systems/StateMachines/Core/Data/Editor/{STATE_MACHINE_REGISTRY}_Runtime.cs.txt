@@ -1,0 +1,8 @@
+[UnityEngine.DefaultExecutionOrder(-1)]
+public partial class #CLASS_NAME# #DERIVED_TYPE#
+{
+    void Awake()
+    {
+        #INITIALIZE_PROPERTY_LOOP#    
+    }
+}

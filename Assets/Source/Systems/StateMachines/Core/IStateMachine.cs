@@ -1,7 +1,5 @@
 public interface IStateMachine
 {
-    public StateMachineRegistry Registry { get; }
-    
     /// <summary>
     /// Intended to evaluate the current state
     /// </summary>

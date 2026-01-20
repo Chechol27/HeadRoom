@@ -56,7 +56,7 @@ public class VerticalJump :
     }
     private void AnimateJump(StateMachineRegistry globalData)
     {
-        bool grounded = globalData.GetValue<bool>("Grounded");
+        bool grounded = globalData.Get<bool>("Grounded");
         Vector3 verticalMotion = Vector3.zero;
         switch (Settings.currentJumpStateId)
         {
@@ -84,7 +84,7 @@ public class VerticalJump :
                 throw new ArgumentOutOfRangeException();
         }
         
-        globalData.SetValue(new Vector3Property{Name = "VerticalMotion", Value = verticalMotion});
+        globalData.Set("VerticalMotion", verticalMotion);
     }
     public void Execute(StateMachineRegistry globalData, Component stateMachine)
     {

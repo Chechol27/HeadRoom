@@ -2,49 +2,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-//TODO: more efficient parameter fetch through hash tables
-public class StateMachineRegistry : ScriptableObject
-{
-    private readonly Dictionary<Type, Dictionary<string, IStateMachineProperty>> collection = new Dictionary<Type, Dictionary<string, IStateMachineProperty>>();
-    public void SetValue<TValue>(StateMachineProperty<TValue> value)
+public abstract class StateMachineRegistry : MonoBehaviour
+{ 
+    protected readonly Dictionary<string, Tuple<Func<object>, Action<object>>> properties = new();
+
+    public PropertyCache CacheProperty(string propertyName)
     {
-        Type t = typeof(TValue);
-        collection[t] ??= new Dictionary<string, IStateMachineProperty>();
-        if (collection[t].ContainsKey(value.Name))
-        {
-            collection[t][value.Name] = value;
-        }
-        else
-        {
-            collection[t].Add(value.Name, value);
-        }
+        var cacheTuple = properties[propertyName];
+        return new PropertyCache { getDelegate = cacheTuple.Item1, setDelegate = cacheTuple.Item2 };
     }
     
-    public StateMachineProperty<TValue> GetValue<TValue>(string paramName)
+    public TValue Get<TValue>(string propertyName)
     {
-        Type t = typeof(TValue);
-        try
+        if (properties.TryGetValue(propertyName, out var val))
         {
-            return (StateMachineProperty<TValue>)collection[t][paramName];
+            return (TValue)val.Item1();
         }
-        catch (Exception e)
-        {
-            return null;
-        }
+
+        throw new ArgumentException($"Key \"{propertyName}\" not found in registry {this}");
     }
 
-    public bool TryGetValue<TValue>(string paramName, out StateMachineProperty<TValue> value)
+    public void Set<TValue>(string propertyName, TValue value)
     {
-        Type t = typeof(TValue);
-        try
+        if (properties.ContainsKey(propertyName))
         {
-            value = (StateMachineProperty<TValue>)collection[t][paramName];
-            return true;
+            properties[propertyName].Item2(value);
+            return;
         }
-        catch (Exception e)
-        {
-            value = null;
-            return false;
-        }
+
+        throw new ArgumentException($"Key \"{propertyName}\" not found in registry {this}");
     }
 }

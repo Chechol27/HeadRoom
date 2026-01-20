@@ -9,6 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a2b7cdbbc0d2d94a8e45a5d848062c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a45e1c0c76b82341adefa1c80a39208, type: 3}
   m_Name: MovementStateMachineRegistry
-  m_EditorClassIdentifier: Assembly-CSharp::StateMachineRegistry
+  m_EditorClassIdentifier: Assembly-CSharp::MotionStateMachineRegistry
+  <CameraTransform>k__BackingField:
+    value: {fileID: 0}
+    alias: PlayerCamera
+    parentLevel: 1
+    componentType: UnityEngine.Transform
+  <HorizontalMovement>k__BackingField:
+    defaultValue: {x: 0, y: 0, z: 0}
+    value: {x: 0, y: 0, z: 0}
+  <VerticalMotion>k__BackingField:
+    defaultValue: {x: 0, y: 0, z: 0}
+    value: {x: 0, y: 0, z: 0}
+  <Grounded>k__BackingField:
+    defaultValue: 0
+    value: 0

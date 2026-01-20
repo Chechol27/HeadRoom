@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5202320073144012149}
   - component: {fileID: 6292403557358435774}
-  - component: {fileID: 6456380340008746953}
   - component: {fileID: 1309918193446441666}
+  - component: {fileID: 606352146110139084}
   m_Layer: 0
   m_Name: MotionTree
   m_TagString: Untagged
@@ -34,7 +34,6 @@ Transform:
   m_Children:
   - {fileID: 7564161960858879289}
   - {fileID: 7168574939193559554}
-  - {fileID: 3170730929748683150}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6292403557358435774
@@ -50,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
   m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 3
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -64,36 +63,9 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!54 &6456380340008746953
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2001427125688024511}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &1309918193446441666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,8 +78,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9129ea793ee5dfc4f8a825fe9a6a05d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MotionStateMachine
+  camera: {fileID: 0}
   updateMode: 0
-  <Registry>k__BackingField: {fileID: 11400000, guid: b241e9a0e6323834393f92c609ff59e3, type: 2}
+  <Registry>k__BackingField: {fileID: 606352146110139084}
+--- !u!114 &606352146110139084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001427125688024511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a45e1c0c76b82341adefa1c80a39208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MotionStateMachineRegistry
+  <CharacterRigidbody>k__BackingField: {fileID: 0}
+  <CameraTransform>k__BackingField: {fileID: 0}
+  <HorizontalMovement>k__BackingField: {x: 0, y: 0, z: 0}
+  <VerticalMotion>k__BackingField: {x: 0, y: 0, z: 0}
+  <MotionVector>k__BackingField: {x: 0, y: 0, z: 0}
+  <Grounded>k__BackingField: 0
 --- !u!1001 &604629711989841426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -169,68 +160,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7719160313184736272, guid: 79d36c7b3c0870045a4604e07f54c580, type: 3}
   m_PrefabInstance: {fileID: 604629711989841426}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &2647749366696473665
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 5202320073144012149}
-    m_Modifications:
-    - target: {fileID: 629942090716339663, guid: 82c01b7d7228e78418a69823e342e1e3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 629942090716339663, guid: 82c01b7d7228e78418a69823e342e1e3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 629942090716339663, guid: 82c01b7d7228e78418a69823e342e1e3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 629942090716339663, guid: 82c01b7d7228e78418a69823e342e1e3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 629942090716339663, guid: 82c01b7d7228e78418a69823e342e1e3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 629942090716339663, guid: 82c01b7d7228e78418a69823e342e1e3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 629942090716339663, guid: 82c01b7d7228e78418a69823e342e1e3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 629942090716339663, guid: 82c01b7d7228e78418a69823e342e1e3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 629942090716339663, guid: 82c01b7d7228e78418a69823e342e1e3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 629942090716339663, guid: 82c01b7d7228e78418a69823e342e1e3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8843461948385834778, guid: 82c01b7d7228e78418a69823e342e1e3, type: 3}
-      propertyPath: m_Name
-      value: Swim
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 82c01b7d7228e78418a69823e342e1e3, type: 3}
---- !u!4 &3170730929748683150 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 629942090716339663, guid: 82c01b7d7228e78418a69823e342e1e3, type: 3}
-  m_PrefabInstance: {fileID: 2647749366696473665}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4057712291297205108
 PrefabInstance:

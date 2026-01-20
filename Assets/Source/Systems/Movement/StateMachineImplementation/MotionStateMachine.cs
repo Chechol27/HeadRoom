@@ -1,20 +1,19 @@
 using System.Collections.Generic;
-using System.Linq;
 using StateMachines.Core.Update;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(MotionStateMachineRegistry))]
 public class MotionStateMachine : MonoBehaviour, IStateMachine, ICharacterComponent
 {
+    [SerializeField] private Transform camera;
+    
     [SerializeField]
     [Tooltip("Only relevant at awake")]
     StateMachineUpdateMode updateMode;
-
-    [field:SerializeField]
-    [field:Expandable]
-    [field:CreateScriptableObject]
-    public StateMachineRegistry Registry { get; private set; }
+    
+    public MotionStateMachineRegistry Registry { get; private set; }
 
     private List<ILogicalState> states = new();
 
@@ -35,11 +34,27 @@ public class MotionStateMachine : MonoBehaviour, IStateMachine, ICharacterCompon
         
         SwitchState(0);
     }
+
+    private void ApplyMotion()
+    {
+        Rigidbody characterRb = Registry.CharacterRigidbody;
+        Vector3 horizontalMotion = Registry.HorizontalMotion;
+        Vector3 verticalMotion = Registry.VerticalMotion;
+        Vector3 motionVector = new Vector3(horizontalMotion.x, verticalMotion.y,
+            horizontalMotion.z);
+        Registry.MotionVector = motionVector;
+
+        characterRb.linearVelocity = motionVector;
+        
+        Vector3 lookVector = Vector3.ProjectOnPlane(motionVector, Vector3.up);
+        Quaternion q = Quaternion.FromToRotation(characterRb.transform.forward, lookVector.normalized);
+        characterRb.rotation *= Quaternion.Slerp(Quaternion.identity, q, lookVector.magnitude * Time.fixedDeltaTime * 10.0f);
+    }
     
     public void SwitchState(int nextStateId)
     {
         if (nextStateId == currentStateId) return;
-        ILogicalState lastState = currentState; 
+        ILogicalState lastState = currentState;
         currentState = states[nextStateId];
         currentStateId = nextStateId;
         if(lastState is IFinalizeState finalizeSate) finalizeSate.Finalize(Registry,this);
@@ -55,11 +70,12 @@ public class MotionStateMachine : MonoBehaviour, IStateMachine, ICharacterCompon
     public void Evaluate()
     {
         currentState?.Execute(Registry, this);
-        Debug.Log($"Current State: {currentState == null}");
+        ApplyMotion();
     }
 
     private void Awake()
     {
+        Registry = GetComponent<MotionStateMachineRegistry>();
         DiscoverStates();
         StateMachineUpdaterFactory.CreateStateMachineUpdater(gameObject, updateMode, Evaluate);
     }
