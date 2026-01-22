@@ -1,4 +1,10 @@
-﻿public interface ITransitionalState
+﻿
+using StateMachines.Transitions;
+
+namespace StateMachines.Core
 {
-    TransitionEvaluator TransitionEvaluator { get; set; }
+    public interface ITransitionalState
+    {
+        TransitionEvaluator TransitionEvaluator { get; set; }
+    }
 }

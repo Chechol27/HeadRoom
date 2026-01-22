@@ -1,4 +1,6 @@
 using System;
+using StateMachines.Core;
+using StateMachines.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,7 +9,6 @@ using UnityEngine.InputSystem;
 /// Features:
 ///     Fully controllable fall acceleration
 ///     Fully controllable upwards acceleration
-///     Coyote time 
 /// </summary>
 public class VerticalJump : 
     MonoBehaviour,
@@ -19,10 +20,17 @@ public class VerticalJump :
     [field:Expandable]
     [field:CreateScriptableObject]
     public VerticalJumpData Settings { get; set; }
+
+    public Action<StateMachineRegistry, Component> PreInitialize { get; set; }
+    public Action<StateMachineRegistry, Component> PostInitialize { get; set; }
+
+    private PropertyCache grounded;
+
     public void Initialize(StateMachineRegistry globalData, Component stateMachine)
     {
         PlayerInput playerInput = stateMachine.GetComponent<PlayerInput>();
         playerInput.onActionTriggered += OnJump;
+        grounded = globalData.CacheProperty("Grounded");
     }
     void SetJumpingState(VerticalJumpData.JumpStateId jumpState)
     {
@@ -47,6 +55,7 @@ public class VerticalJump :
         if (ctx.action.id != Settings.actionTrigger.action.id) return;
         if (ctx.started)
         {
+            if (!grounded.Get<bool>()) return;
             SetJumpingState(VerticalJumpData.JumpStateId.Up);    
         }
         if (ctx.canceled)
@@ -56,13 +65,12 @@ public class VerticalJump :
     }
     private void AnimateJump(StateMachineRegistry globalData)
     {
-        bool grounded = globalData.Get<bool>("Grounded");
         Vector3 verticalMotion = Vector3.zero;
         switch (Settings.currentJumpStateId)
         {
             case VerticalJumpData.JumpStateId.None:
                 verticalMotion = Vector3.up * Settings.downwardsAcceleration.Evaluate(.5f);
-                if (!grounded)
+                if (!grounded.Get<bool>())
                 {
                     SetJumpingState(VerticalJumpData.JumpStateId.Down);
                 }
@@ -77,7 +85,7 @@ public class VerticalJump :
                 }
                 break;
             case VerticalJumpData.JumpStateId.Down:
-                Settings.currentFreeFallTime += grounded ? 0 : Time.fixedDeltaTime;
+                Settings.currentFreeFallTime += grounded.Get<bool>() ? 0 : Time.fixedDeltaTime;
                 verticalMotion = Vector3.up * Settings.downwardsAcceleration.Evaluate(Settings.currentFreeFallTime / Settings.freeFallTime);
                 break;
             default:
@@ -86,10 +94,18 @@ public class VerticalJump :
         
         globalData.Set("VerticalMotion", verticalMotion);
     }
+
+    public Action<StateMachineRegistry, Component> PreExecute { get; set; }
+    public Action<StateMachineRegistry, Component> PostExecute { get; set; }
+
     public void Execute(StateMachineRegistry globalData, Component stateMachine)
     {
         AnimateJump(globalData);
     }
+
+    public Action<StateMachineRegistry, Component> PreFinalize { get; set; }
+    public Action<StateMachineRegistry, Component> PostFinalize { get; set; }
+
     public void Finalize(StateMachineRegistry globalData, Component stateMachine)
     {
         PlayerInput playerInput = stateMachine.GetComponent<PlayerInput>();

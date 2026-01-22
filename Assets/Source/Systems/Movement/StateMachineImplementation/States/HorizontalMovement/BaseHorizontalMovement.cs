@@ -1,7 +1,12 @@
+using System;
+using StateMachines.Core;
+using StateMachines.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
+/// <summary>
+/// Planar (XZ) Movement
+/// </summary>
 public class BaseHorizontalMovement :
     MonoBehaviour,
     ILogicalState, 
@@ -12,6 +17,10 @@ public class BaseHorizontalMovement :
     [field:Expandable]
     [field:CreateScriptableObject]
     public HorizontalMovementData Settings { get; set; }
+
+    public Action<StateMachineRegistry, Component> PreInitialize { get; set; }
+    public Action<StateMachineRegistry, Component> PostInitialize { get; set; }
+
     public void Initialize(StateMachineRegistry globalData, Component stateMachine)
     {
         Settings.rb = globalData.Get<Rigidbody>("CharacterRigidbody");
@@ -37,17 +46,22 @@ public class BaseHorizontalMovement :
         Debug.DrawLine(rb.position, rb.position + motionVector, Color.cyan, 1.0f);
         Debug.DrawLine(rb.position, rb.position + projectVector, Color.blue);
     }
-    
+
+    public Action<StateMachineRegistry, Component> PreExecute { get; set; }
+    public Action<StateMachineRegistry, Component> PostExecute { get; set; }
+
     public void Execute(StateMachineRegistry globalData, Component stateMachine)
     {
         Settings.inputDamper.Update();
         SolveMotion(globalData);
     }
 
+    public Action<StateMachineRegistry, Component> PreFinalize { get; set; }
+    public Action<StateMachineRegistry, Component> PostFinalize { get; set; }
+
     public void Finalize(StateMachineRegistry globalData, Component stateMachine)
     {
         PlayerInput playerInput = stateMachine.GetComponent<PlayerInput>();
         playerInput.onActionTriggered -= OnMove;
     }
-
 }

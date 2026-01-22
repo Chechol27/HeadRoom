@@ -1,7 +1,10 @@
 using System;
 
-[AttributeUsage(AttributeTargets.Property)]
-public class StateMachinePropertyAttribute : Attribute
+namespace StateMachines.Data
 {
-    
+    [AttributeUsage(AttributeTargets.Property)]
+    public class StateMachinePropertyAttribute : Attribute
+    {
+
+    }
 }

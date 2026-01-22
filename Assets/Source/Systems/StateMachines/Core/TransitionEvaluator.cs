@@ -1,25 +1,31 @@
+using StateMachines.Core;
+using StateMachines.Data;
 using UnityEngine;
 
-public class TransitionEvaluator : MonoBehaviour
+namespace StateMachines.Transitions
 {
-    private ILogicalStateTransition[] transtions;
-
-    private void Awake()
+    public class TransitionEvaluator : MonoBehaviour
     {
-        transtions = GetComponentsInChildren<ILogicalStateTransition>();
-    }
+        private ILogicalStateTransition[] transtions;
 
-    public bool Evaluate(StateMachineRegistry registry, out ILogicalStateTransition hitTransition)
-    {
-        hitTransition = null;
-        foreach (var logicalStateTransition in transtions)
+        private void Awake()
         {
-            if (logicalStateTransition.Evaluate(registry))
-            {
-                hitTransition = logicalStateTransition;
-                return true;
-            }
+            transtions = GetComponentsInChildren<ILogicalStateTransition>();
         }
-        return false;
+
+        public bool Evaluate(StateMachineRegistry registry, out ILogicalStateTransition hitTransition)
+        {
+            hitTransition = null;
+            foreach (var logicalStateTransition in transtions)
+            {
+                if (logicalStateTransition.Evaluate(registry))
+                {
+                    hitTransition = logicalStateTransition;
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

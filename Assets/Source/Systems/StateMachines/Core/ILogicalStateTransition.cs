@@ -1,7 +1,12 @@
 
-public interface ILogicalStateTransition
+using StateMachines.Data;
+
+namespace StateMachines.Core
 {
-    ILogicalState To { get; set; }
-    
-    bool Evaluate(StateMachineRegistry registry);
+    public interface ILogicalStateTransition
+    {
+        ILogicalState To { get; set; }
+
+        bool Evaluate(StateMachineRegistry registry);
+    }
 }

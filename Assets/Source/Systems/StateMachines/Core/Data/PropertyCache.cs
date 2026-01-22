@@ -1,17 +1,20 @@
 using System;
 
-public class PropertyCache
+namespace StateMachines.Data
 {
-    public Func<object> getDelegate;
-    public Action<object> setDelegate;
-
-    public TValue Get<TValue>()
+    public class PropertyCache
     {
-        return (TValue)getDelegate();
-    }
+        public Func<object> getDelegate;
+        public Action<object> setDelegate;
 
-    public void Set<TValue>(TValue value)
-    {
-        setDelegate(value);
+        public TValue Get<TValue>()
+        {
+            return (TValue)getDelegate();
+        }
+
+        public void Set<TValue>(TValue value)
+        {
+            setDelegate(value);
+        }
     }
 }

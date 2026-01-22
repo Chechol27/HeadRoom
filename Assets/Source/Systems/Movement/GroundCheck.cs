@@ -1,10 +1,13 @@
 using System;
+using StateMachines.Data;
+using StateMachines.Decorators;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class GroundCheck : MonoBehaviour, ICharacterComponent
+public class GroundCheck : StateDecorator
 {
+    [SerializeField] private Transform targetTransform;
     [SerializeField] private float casterRadius;
     [SerializeField] private float rayCount;
     [SerializeField] private float groundedThreshold;
@@ -17,14 +20,14 @@ public class GroundCheck : MonoBehaviour, ICharacterComponent
         return positiveCount > groundedThreshold;
     }
     
-    private void EvaluateGroundCollision()
+    private void EvaluateGroundCollision(StateMachineRegistry registry)
     {
         float angleStep = 360.0f / (float)rayCount;
         positiveCount = 0;
         for (float i = 0; i < rayCount; i++)
         {
-            Vector3 rayOrigin = Quaternion.AngleAxis(angleStep * i, transform.forward) * transform.up * casterRadius;
-            Ray r = new Ray(transform.position + rayOrigin, transform.forward);
+            Vector3 rayOrigin = Quaternion.AngleAxis(angleStep * i, -targetTransform.up) * targetTransform.forward * casterRadius;
+            Ray r = new Ray(targetTransform.position + rayOrigin, -targetTransform.up);
             if (Physics.Raycast(r, out RaycastHit hit, rayLength, castMask))
             {
 #if UNITY_EDITOR
@@ -40,7 +43,7 @@ public class GroundCheck : MonoBehaviour, ICharacterComponent
             }
         }
 
-        CharacterData.motion.grounded = ArbitrateGroundedState();
+        registry.Set("Grounded", ArbitrateGroundedState());
     }
 
     #if UNITY_EDITOR
@@ -50,11 +53,6 @@ public class GroundCheck : MonoBehaviour, ICharacterComponent
         groundedThreshold = Mathf.Clamp(groundedThreshold, 1, rayCount);
     }
 #endif
-    
-    private void Update()
-    {
-        EvaluateGroundCollision();
-    }
 
     public CharacterData CharacterData { get; set; }
     
@@ -62,7 +60,11 @@ public class GroundCheck : MonoBehaviour, ICharacterComponent
     private void OnDrawGizmos()
     {
         Handles.color = positiveCount > 0 ? Color.green : Color.red;
-        Handles.DrawWireDisc(transform.position, transform.forward, casterRadius);
+        Handles.DrawWireDisc(targetTransform.position, -targetTransform.up, casterRadius);
     }
     #endif
+    public override void Execute(StateMachineRegistry registry, Component stateMachine)
+    {
+        EvaluateGroundCollision(registry);
+    }
 }

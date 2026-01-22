@@ -22,15 +22,15 @@ MonoBehaviour:
       time: 0
       value: 0
       inSlope: 1.2998432
-      outSlope: 80.16807
+      outSlope: 43.49544
       tangentMode: 69
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.12473795
-      value: 10
-      inSlope: 80.16807
+      time: 0.3448637
+      value: 15
+      inSlope: 43.49544
       outSlope: 0
       tangentMode: 69
       weightedMode: 0
@@ -38,9 +38,9 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 0.6740042
-      value: 10
-      inSlope: 0
-      outSlope: -30.675241
+      value: 15
+      inSlope: -0
+      outSlope: -46.012863
       tangentMode: 69
       weightedMode: 0
       inWeight: 0.33333334
@@ -48,7 +48,7 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -30.675241
+      inSlope: -46.012863
       outSlope: 0
       tangentMode: 69
       weightedMode: 0
@@ -81,6 +81,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  currentJumpStateId: 0
+  currentJumpStateId: 2
   currentAirTime: 0
-  currentFreeFallTime: 0
+  currentFreeFallTime: 0.31999987

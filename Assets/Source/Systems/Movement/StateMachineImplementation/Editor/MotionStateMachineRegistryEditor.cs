@@ -4,9 +4,14 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using StateMachines.Data;
 using UnityEngine;
 using UnityEditor;
 
+
+/// <summary>
+/// Editro script to generate property string accessors for a morion state machine registry
+/// </summary>
 [CustomEditor(typeof(MotionStateMachineRegistry))]
 public class MotionStateMachineRegistryEditor : Editor
 {

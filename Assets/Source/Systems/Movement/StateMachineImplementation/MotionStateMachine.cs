@@ -1,14 +1,14 @@
 using System.Collections.Generic;
+using StateMachines.Core;
 using StateMachines.Core.Update;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(MotionStateMachineRegistry))]
 public class MotionStateMachine : MonoBehaviour, IStateMachine, ICharacterComponent
 {
-    [SerializeField] private Transform camera;
-    
     [SerializeField]
     [Tooltip("Only relevant at awake")]
     StateMachineUpdateMode updateMode;
@@ -27,6 +27,15 @@ public class MotionStateMachine : MonoBehaviour, IStateMachine, ICharacterCompon
         {
             if (t.TryGetComponent(out ILogicalState state))
             {
+                if (state is IInitializeState initializeState)
+                {
+                    initializeState.RegisterDecorators(t);
+                }
+                state.RegisterDecorators(t);
+                if (state is IFinalizeState finalizeState)
+                {
+                    finalizeState.RegisterDecorators(t);
+                }
                 states.Add(state);
                 Debug.Log(t.gameObject);
             }
@@ -57,8 +66,15 @@ public class MotionStateMachine : MonoBehaviour, IStateMachine, ICharacterCompon
         ILogicalState lastState = currentState;
         currentState = states[nextStateId];
         currentStateId = nextStateId;
-        if(lastState is IFinalizeState finalizeSate) finalizeSate.Finalize(Registry,this);
-        if(currentState is IInitializeState initializeState) initializeState.Initialize(Registry, this);
+        if (lastState is IFinalizeState finalizeSate)
+        {
+            finalizeSate.Finalize(Registry,this);
+        }
+
+        if (currentState is IInitializeState initializeState)
+        {
+            initializeState.Initialize(Registry, this);
+        }
     }
 
     public void SwitchState(ILogicalState targetState)
@@ -69,7 +85,9 @@ public class MotionStateMachine : MonoBehaviour, IStateMachine, ICharacterCompon
 
     public void Evaluate()
     {
+        currentState?.PreExecute?.Invoke(Registry, this);
         currentState?.Execute(Registry, this);
+        currentState?.PostExecute?.Invoke(Registry, this);
         ApplyMotion();
     }
 

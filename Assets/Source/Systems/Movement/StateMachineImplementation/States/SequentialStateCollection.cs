@@ -1,6 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using StateMachines.Core;
+using StateMachines.Data;
+using StateMachines.Transitions;
 using UnityEngine;
 
+
+/// <summary>
+/// Utility state for executing multiple sub-states sequentially, think of it as a state group
+/// </summary>
 public class SequentialStateCollection : 
     MonoBehaviour, 
     ILogicalState, 
@@ -9,8 +17,11 @@ public class SequentialStateCollection :
     ITransitionalState
 {
     [field:SerializeField] public TransitionEvaluator TransitionEvaluator { get; set; }
-    private List<ILogicalState> subStates = new(); 
-    
+    private List<ILogicalState> subStates = new();
+
+    public Action<StateMachineRegistry, Component> PreInitialize { get; set; }
+    public Action<StateMachineRegistry, Component> PostInitialize { get; set; }
+
     public void Initialize(StateMachineRegistry globalData, Component stateMachine)
     {
         subStates.Clear();
@@ -26,7 +37,10 @@ public class SequentialStateCollection :
             }
         }
     }
-    
+
+    public Action<StateMachineRegistry, Component> PreExecute { get; set; }
+    public Action<StateMachineRegistry, Component> PostExecute { get; set; }
+
     public void Execute(StateMachineRegistry globalData, Component stateMachine)
     {
         foreach (ILogicalState logicalState in subStates)
@@ -39,7 +53,10 @@ public class SequentialStateCollection :
             ((IStateMachine)stateMachine).SwitchState(hit.To);
         }
     }
-    
+
+    public Action<StateMachineRegistry, Component> PreFinalize { get; set; }
+    public Action<StateMachineRegistry, Component> PostFinalize { get; set; }
+
     public void Finalize(StateMachineRegistry globalData, Component stateMachine)
     {
         foreach (ILogicalState logicalState in subStates)

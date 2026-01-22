@@ -1,5 +1,8 @@
-﻿public enum BooleanComparison
+﻿namespace StateMachines.Transitions
 {
-    Equal,
-    NotEqual
+    public enum BooleanComparison
+    {
+        Equal,
+        NotEqual
+    }
 }

@@ -1,7 +1,11 @@
-﻿public enum NumericComparison
+﻿namespace StateMachines.Transitions
 {
-    Equal,
-    NotEqual,
-    MoreThan,
-    LessThan
+
+    public enum NumericComparison
+    {
+        Equal,
+        NotEqual,
+        MoreThan,
+        LessThan
+    }
 }

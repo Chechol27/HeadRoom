@@ -1,14 +1,25 @@
+using StateMachines.Core;
+using StateMachines.Data;
 using UnityEngine;
 
-public class BoolTransition : MonoBehaviour, ILogicalStateTransition
+namespace StateMachines.Transitions
 {
-    [SerializeField] private string registryProperty;
-    [SerializeField] private bool threshold;
-    [SerializeField] private Component to;
-    public ILogicalState To { get => (ILogicalState)to; set => to = (Component)value; }
-    public bool Evaluate(StateMachineRegistry registry)
+    public class BoolTransition : MonoBehaviour, ILogicalStateTransition
     {
-        bool value = registry.Get<bool>(registryProperty);
-        return value == threshold;
+        [SerializeField] private string registryProperty;
+        [SerializeField] private bool comparisonValue;
+        [SerializeField] private Component to;
+
+        public ILogicalState To
+        {
+            get => (ILogicalState)to;
+            set => to = (Component)value;
+        }
+
+        public bool Evaluate(StateMachineRegistry registry)
+        {
+            bool value = registry.Get<bool>(registryProperty);
+            return value == comparisonValue;
+        }
     }
 }
