@@ -438,11 +438,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!20 &1737195306 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 4345985695054766697, guid: 621548bf965a6074088a3881032ab7a9, type: 3}
-  m_PrefabInstance: {fileID: 3625596338790217159}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2118074198
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,58 +564,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hero(State Machines)
       objectReference: {fileID: 0}
-    - target: {fileID: 7687729565465343024, guid: 621548bf965a6074088a3881032ab7a9, type: 3}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 1737195306}
-    - target: {fileID: 7687729565465343024, guid: 621548bf965a6074088a3881032ab7a9, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8688946551345802162, guid: 621548bf965a6074088a3881032ab7a9, type: 3}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 2766781141478622308}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 1660422074492093075, guid: 621548bf965a6074088a3881032ab7a9, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 270116206905685762, guid: 621548bf965a6074088a3881032ab7a9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3625596338790217162}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 621548bf965a6074088a3881032ab7a9, type: 3}
---- !u!4 &3625596338790217160 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2008502157808949591, guid: 621548bf965a6074088a3881032ab7a9, type: 3}
-  m_PrefabInstance: {fileID: 3625596338790217159}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3625596338790217161 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 270116206905685762, guid: 621548bf965a6074088a3881032ab7a9, type: 3}
-  m_PrefabInstance: {fileID: 3625596338790217159}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3625596338790217162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3625596338790217161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4e2a3a24322faf49a42b238161c4657, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GroundCheck
-  <Order>k__BackingField: 3
-  targetTransform: {fileID: 3625596338790217160}
-  casterRadius: 0.57
-  rayCount: 16.11
-  groundedThreshold: 1
-  rayLength: 0.62
-  castMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!20 &4895293234921870439
 Camera:
   m_ObjectHideFlags: 0

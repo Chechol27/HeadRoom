@@ -35,6 +35,7 @@ public class MotionStateMachine : MonoBehaviour, IStateMachine, ICharacterCompon
                 if (state is IFinalizeState finalizeState)
                 {
                     finalizeState.RegisterDecorators(t);
+                    
                 }
                 states.Add(state);
                 Debug.Log(t.gameObject);

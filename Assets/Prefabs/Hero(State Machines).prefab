@@ -924,6 +924,10 @@ PrefabInstance:
       propertyPath: m_NotificationBehavior
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8556559962117255966, guid: 3b562ff67ad3bd545b9147d087067ed0, type: 3}
+      propertyPath: targetTransform
+      value: 
+      objectReference: {fileID: 2008502157808949591}
     m_RemovedComponents:
     - {fileID: 4730492609909047326, guid: 3b562ff67ad3bd545b9147d087067ed0, type: 3}
     - {fileID: 6456380340008746953, guid: 3b562ff67ad3bd545b9147d087067ed0, type: 3}
@@ -931,9 +935,6 @@ PrefabInstance:
     - {fileID: 6774816596722303835, guid: 3b562ff67ad3bd545b9147d087067ed0, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7568070683495779954, guid: 3b562ff67ad3bd545b9147d087067ed0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3849880027324908415}
     - targetCorrespondingSourceObject: {fileID: 5725767079557721890, guid: 3b562ff67ad3bd545b9147d087067ed0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7584183395679944583}
@@ -944,32 +945,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4766848077245962779}
   m_SourcePrefab: {fileID: 100100000, guid: 3b562ff67ad3bd545b9147d087067ed0, type: 3}
---- !u!1 &270116206905685762 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7568070683495779954, guid: 3b562ff67ad3bd545b9147d087067ed0, type: 3}
-  m_PrefabInstance: {fileID: 7690060681204218224}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3849880027324908415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270116206905685762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4e2a3a24322faf49a42b238161c4657, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GroundCheck
-  <Order>k__BackingField: 3
-  targetTransform: {fileID: 2008502157808949591}
-  casterRadius: 0.57
-  rayCount: 16.11
-  groundedThreshold: 1
-  rayLength: 0.62
-  castMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!4 &703530894648308594 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7168574939193559554, guid: 3b562ff67ad3bd545b9147d087067ed0, type: 3}
@@ -1043,7 +1018,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4339091591532926310, guid: 3b562ff67ad3bd545b9147d087067ed0, type: 3}
   m_PrefabInstance: {fileID: 7690060681204218224}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270116206905685762}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08ec1db27f8e46c38477c74e39c7ca1d, type: 3}

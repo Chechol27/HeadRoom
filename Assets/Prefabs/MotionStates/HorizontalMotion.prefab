@@ -100,6 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5816028308286316109}
   - component: {fileID: 322129439191584274}
+  - component: {fileID: 5688294990708844650}
   m_Layer: 0
   m_Name: HorizontalMotion
   m_TagString: Untagged
@@ -138,6 +139,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequentialStateCollection
   <TransitionEvaluator>k__BackingField: {fileID: 3271345117570491472}
+--- !u!114 &5688294990708844650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5857164295884887302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4e2a3a24322faf49a42b238161c4657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundCheck
+  <Order>k__BackingField: 3
+  targetTransform: {fileID: 0}
+  casterRadius: 0.57
+  rayCount: 16.11
+  groundedThreshold: 1
+  rayLength: 0.62
+  castMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &6605656721341134462
 GameObject:
   m_ObjectHideFlags: 0
