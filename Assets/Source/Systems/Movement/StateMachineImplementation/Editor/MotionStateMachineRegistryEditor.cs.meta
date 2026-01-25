@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 617e6702ef27edf4f91d235d599a1a17
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - registryTemplate: {fileID: 4900000, guid: 5e7f22f6584cd88409b308aefc223521, type: 3}
+  - registryScript: {fileID: 11500000, guid: 9a45e1c0c76b82341adefa1c80a39208, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

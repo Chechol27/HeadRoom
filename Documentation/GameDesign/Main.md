@@ -4,7 +4,9 @@ Explore the room of 🕴️ and travel through all their hobbies and fixations, 
 
 This is a 3D platformer game in 3rd person where the character can access different levels through different interactable
 objects around their room that serves as a nexus/lobby, this room evolves and changes as a consequence of time and the player's actions.
+
 ---
+
 ## Gameplay stages
 
 ```mermaid
@@ -17,6 +19,7 @@ flowchart LR
 ```
 
 ---
+
 ### Explore The Room
 
 The room is a safe place that serves as a nexus to access the game's main levels, [see more](ExploreTheRoom.md)
