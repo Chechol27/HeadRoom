@@ -240,6 +240,8 @@ GameObject:
   - component: {fileID: 65095852}
   - component: {fileID: 65095851}
   - component: {fileID: 65095850}
+  - component: {fileID: 65095859}
+  - component: {fileID: 65095858}
   m_Layer: 0
   m_Name: Bill
   m_TagString: Untagged
@@ -262,6 +264,7 @@ Transform:
   m_Children:
   - {fileID: 141824037}
   - {fileID: 1145610038}
+  - {fileID: 876941964}
   - {fileID: 731085200}
   m_Father: {fileID: 1831685047}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -304,7 +307,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MotionStateMachine
   updateMode: 1
-  <Registry>k__BackingField: {fileID: 0}
 --- !u!65 &65095853
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -539,6 +541,39 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 65095848}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &65095858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65095848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a45e1c0c76b82341adefa1c80a39208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MotionStateMachineRegistry
+  <CharacterRigidbody>k__BackingField: {fileID: 0}
+  <CameraTransform>k__BackingField: {fileID: 0}
+  <HorizontalMotion>k__BackingField: {x: 0, y: 0, z: 0}
+  <VerticalMotion>k__BackingField: {x: 0, y: 0, z: 0}
+  <MotionVector>k__BackingField: {x: 0, y: 0, z: 0}
+  <Grounded>k__BackingField: 0
+  <OnWall>k__BackingField: 0
+  <WallNormal>k__BackingField: {x: 0, y: 0, z: 0}
+--- !u!114 &65095859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65095848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4a7431a55a4b769268e0f8f67f357c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Source.Systems.Movement.StateMachineImplementation.States.WallMovement.WallMovement
+  <Settings>k__BackingField: {fileID: 0}
 --- !u!1 &141824036
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,6 +1341,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e2a3a24322faf49a42b238161c4657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundCheck
+  <Order>k__BackingField: 0
+  targetTransform: {fileID: 0}
   casterRadius: 0.7
   rayCount: 25
   groundedThreshold: 5
@@ -2660,7 +2697,7 @@ Transform:
   m_GameObject: {fileID: 856561242}
   serializedVersion: 2
   m_LocalRotation: {x: 0.031768344, y: 0.0000000037234082, z: -1.1834625e-10, w: 0.99949527}
-  m_LocalPosition: {x: 8.912, y: 2.5327713, z: -6.447127}
+  m_LocalPosition: {x: 0.52400017, y: 2.5327713, z: -6.447127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3016,6 +3053,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &876941963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 876941964}
+  - component: {fileID: 876941965}
+  m_Layer: 0
+  m_Name: WallCaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &876941964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876941963}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 65095849}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &876941965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876941963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0131454f367b458cba74cee9d1ddbf40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Source.Systems.Movement.WallCheck
+  <Order>k__BackingField: 0
+  targetTransform: {fileID: 0}
+  casterRadius: 0.35
+  rayCount: 8
+  rayLength: 0.6
+  castMask:
+    serializedVersion: 2
+    m_Bits: 128
+  maxUpDot: 0.2
 --- !u!1001 &915745293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3372,6 +3462,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e2a3a24322faf49a42b238161c4657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundCheck
+  <Order>k__BackingField: 0
+  targetTransform: {fileID: 0}
   casterRadius: 0
   rayCount: 1
   groundedThreshold: 1
@@ -6400,7 +6492,7 @@ Transform:
   m_GameObject: {fileID: 2037626101}
   serializedVersion: 2
   m_LocalRotation: {x: 0.031768344, y: 0.0000000037234082, z: -1.1834625e-10, w: 0.99949527}
-  m_LocalPosition: {x: 0, y: 2.5327713, z: -6.447127}
+  m_LocalPosition: {x: -8.388, y: 2.5327713, z: -6.447127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

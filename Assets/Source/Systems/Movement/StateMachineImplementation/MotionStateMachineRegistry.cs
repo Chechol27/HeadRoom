@@ -11,4 +11,6 @@ public partial class MotionStateMachineRegistry : StateMachineRegistry
     [field:SerializeField][StateMachineProperty] public Vector3 MotionVector { get; set; }
     [field:SerializeField][StateMachineProperty] public bool Grounded { get; set; }
     [field:SerializeField][StateMachineProperty] public bool OnWall { get; set; }
+    [field: SerializeField][StateMachineProperty] public Vector3 WallNormal { get; set; }
+
 }
